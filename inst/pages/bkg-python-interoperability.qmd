@@ -121,7 +121,7 @@ knitr::opts_chunk$set(python.reticulate = TRUE)
 
 #### Start with Python-style `AnnData`
 
-Although the `AnnData` class comes from Python, it has been ported to R via the previously-mentioned `anndataR` package.
+Although the `AnnData` class comes from Python, it has been ported to R via the previously-mentioned [anndataR](https://github.com/scverse/anndataR) [@Deconinck2025-anndataR] package.
 
 ```{r load-h5ad}
 h5ad <- system.file("extdata", "example.h5ad", package="anndataR")
@@ -130,7 +130,7 @@ ad <- read_h5ad(h5ad)
 ad
 ```
 
-We can use `anndataR` to access `AnnData` object variables using R syntax. For basic outputs, this works out of the box:
+We can use [anndataR](https://github.com/scverse/anndataR) [@Deconinck2025-anndataR] to access `AnnData` object variables using R syntax. For basic outputs, this works out of the box:
 
 ```{r uniq-genecounts}
 unique(ad$obs$n_genes_by_counts)
@@ -138,13 +138,13 @@ unique(ad$obs$n_genes_by_counts)
 
 #### Back to `SingleCellExperiment`
 
-`anndataR` also supports a few direct type conversions (e.g. `SingleCellExperiment` $\leftrightarrow$ `AnnData` $\leftrightarrow$ `Seurat`). In the example demonstrated here, we convert from `AnnData` to `SingleCellExperiment`:
+[anndataR](https://github.com/scverse/anndataR) [@Deconinck2025-anndataR] also supports a few direct type conversions (e.g. `SingleCellExperiment` $\leftrightarrow$ `AnnData` $\leftrightarrow$ `Seurat`). In the example demonstrated here, we convert from `AnnData` to `SingleCellExperiment`:
 
 ```{r conv2sce, message=FALSE}
 sce <- ad$as_SingleCellExperiment()
 ```
 
-With `anndataR`, we can also read the `.h5ad` file in as a`SingleCellExperiment`.
+With [anndataR](https://github.com/scverse/anndataR) [@Deconinck2025-anndataR], we can also read the `.h5ad` file in as a`SingleCellExperiment`.
 
 ```{r adAsSCE}
 sce <- read_h5ad(h5ad, as = "SingleCellExperiment") 
@@ -173,7 +173,7 @@ unique(ad2$obs$n_genes_by_counts)
 
 After configuring the Python environment, R commands can now be run using `reticulate` as follows. For more details on the syntax used, see the [reticulate](https://rstudio.github.io/reticulate/) documentation. [Note that running code in this way comes with a small overhead of starting up a Python session in the background. But this is typically small compared to the runtime required to run computation-heavy methods, or when analyzing large-scale single-cell and spatial data (hundreds of thousands of cells or more).]{.aside}
 
-Here we use Python's `anndata` module instead of R package `anndataR` to read in the `exported_h5ad` object.
+Here we use Python's [AnnData](https://anndata.readthedocs.io/) module instead of R package [anndataR](https://github.com/scverse/anndataR) [@Deconinck2025-anndataR] to read in the `exported_h5ad` object.
 
 ```{r h5ad2Reticulate, error=TRUE, message=FALSE}
 anndata <- import("anndata")
