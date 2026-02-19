@@ -219,7 +219,7 @@ assay(spe) <- as.matrix(assay(spe))
 ad <- as_AnnData(spe,
                  # we will map these manually in the next steps
                  uns_mapping = FALSE,
-                 obs_mapping = FALSE
+                 obsm_mapping = FALSE
                  )   
 ```
 
